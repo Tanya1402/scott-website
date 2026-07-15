@@ -8,6 +8,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const scenes = [
+  { id: 's1', src: '/hero/hero-exterior.jpg', alt: 'Scott — Bhopal' },
+  { id: 's3', src: '/hero/hero-living.jpg', alt: 'Scott living collection' },
+  { id: 's4', src: '/hero/hero-dining.jpg', alt: 'Scott dining collection' },
+  { id: 's5', src: '/hero/hero-pool.jpg', alt: 'Scott collection' },
+]
+
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const stageRef = useRef<HTMLDivElement>(null)
@@ -39,49 +46,43 @@ export default function HeroSection() {
     })
 
     // Initial state — only scene 1 visible
-    gsap.set('#s2,#s3,#s4,#s5,#s6', { opacity: 0 })
+    gsap.set('#s2,#s3,#s4,#s5', { opacity: 0 })
     gsap.set('#door-l,#door-r', { xPercent: 0 })
-    gsap.set('#t1,#t2,#t3,#t4,#t5,#t6', { opacity: 0, y: 28 })
+    gsap.set('#t1,#t2,#t4,#t5', { opacity: 0, y: 28 })
+    gsap.set('#t3a,#t3b,#t3c', { opacity: 0, y: 28 })
 
-    // Scene 1 (0–16%): exterior, fade in title text, then fade out
+    // Scene 1 (0–20%): exterior, fade in title text, then fade out
     master
       .to('#t1', { opacity: 1, y: 0, duration: 0.08 }, 0)
-      .to('#t1', { opacity: 0, y: -20, duration: 0.06 }, 0.10)
-      .to('#s1', { opacity: 0, duration: 0.04 }, 0.14)
+      .to('#t1', { opacity: 0, y: -20, duration: 0.05 }, 0.15)
+      .to('#s1', { opacity: 0, duration: 0.02 }, 0.18)
 
-      // Scene 2 (16–32%): doors slide apart revealing s3 behind
-      .to('#s2', { opacity: 1, duration: 0.01 }, 0.16)
-      .to('#t2', { opacity: 1, y: 0, duration: 0.04 }, 0.18)
-      .to('#door-l', { xPercent: -100, duration: 0.10 }, 0.20)
-      .to('#door-r', { xPercent: 100, duration: 0.10 }, 0.20)
-      .to('#s3', { opacity: 1, duration: 0.01 }, 0.20)
-      .to('#t2', { opacity: 0, duration: 0.04 }, 0.28)
-      .to('#s2', { opacity: 0, duration: 0.01 }, 0.31)
+      // Scene 2 (20–40%): doors slide apart revealing s3 behind
+      .to('#s2', { opacity: 1, duration: 0.01 }, 0.19)
+      .to('#door-l', { xPercent: -100, duration: 0.15 }, 0.2)
+      .to('#door-r', { xPercent: 100, duration: 0.15 }, 0.2)
+      .to('#s3', { opacity: 1, duration: 0.01 }, 0.2)
+      .to('#t2', { opacity: 1, y: 0, duration: 0.04 }, 0.22)
+      .to('#t2', { opacity: 0, duration: 0.04 }, 0.34)
 
-      // Scene 3 (32–48%): living room — staggered word reveal
-      .to('#t3a', { opacity: 1, y: 0, duration: 0.05 }, 0.33)
-      .to('#t3b', { opacity: 1, y: 0, duration: 0.05 }, 0.37)
-      .to('#t3c', { opacity: 1, y: 0, duration: 0.05 }, 0.41)
-      .to('#t3a,#t3b,#t3c', { opacity: 0, duration: 0.04 }, 0.45)
-      .to('#s3', { opacity: 0, duration: 0.03 }, 0.47)
+      // Scene 3 (40–60%): living room — staggered word reveal
+      .to('#t3a', { opacity: 1, y: 0, duration: 0.05 }, 0.42)
+      .to('#t3b', { opacity: 1, y: 0, duration: 0.05 }, 0.46)
+      .to('#t3c', { opacity: 1, y: 0, duration: 0.05 }, 0.5)
+      .to('#t3a,#t3b,#t3c', { opacity: 0, duration: 0.04 }, 0.57)
+      .to('#s3', { opacity: 0, duration: 0.02 }, 0.59)
+      .to('#s4', { opacity: 1, duration: 0.02 }, 0.59)
 
-      // Scene 4 (48–64%): pool — Ken Burns + right-aligned text
-      .to('#s4', { opacity: 1, duration: 0.03 }, 0.48)
-      .to('#s4 .ken-burns', { scale: 1.06, duration: 0.16, ease: 'none' }, 0.48)
-      .to('#t4', { opacity: 1, y: 0, duration: 0.06 }, 0.52)
-      .to('#t4', { opacity: 0, duration: 0.04 }, 0.61)
-      .to('#s4', { opacity: 0, duration: 0.03 }, 0.63)
+      // Scene 4 (60–80%): dining — Ken Burns + right-aligned text
+      .to('#s4 .ken-burns', { scale: 1.05, duration: 0.2, ease: 'none' }, 0.6)
+      .to('#t4', { opacity: 1, y: 0, duration: 0.06 }, 0.62)
+      .to('#t4', { opacity: 0, duration: 0.04 }, 0.77)
+      .to('#s4', { opacity: 0, duration: 0.02 }, 0.79)
+      .to('#s5', { opacity: 1, duration: 0.02 }, 0.79)
 
-      // Scene 5 (64–80%): bedroom — centred
-      .to('#s5', { opacity: 1, duration: 0.03 }, 0.64)
-      .to('#t5', { opacity: 1, y: 0, duration: 0.06 }, 0.67)
-      .to('#t5', { opacity: 0, duration: 0.04 }, 0.77)
-      .to('#s5', { opacity: 0, duration: 0.03 }, 0.79)
-
-      // Scene 6 (80–100%): dining — full tagline + CTA, stays visible
-      .to('#s6', { opacity: 1, duration: 0.03 }, 0.80)
-      .to('#t6', { opacity: 1, y: 0, duration: 0.08 }, 0.83)
-    // t6 stays — no exit
+      // Scene 5 (80–100%): pool — full tagline + CTA, stays visible
+      .to('#t5', { opacity: 1, y: 0, duration: 0.08 }, 0.82)
+    // t5 stays — no exit
 
     return () => ScrollTrigger.getAll().forEach((st) => st.kill())
   }, [])
@@ -94,25 +95,25 @@ export default function HeroSection() {
       >
         {/* ── IMAGE LAYERS ── */}
 
-        {/* Scene 1 — Living room, Ken Burns zoom */}
-        <div id="s1" className="absolute inset-0 z-[15]">
+        {/* Scene 1 — Exterior, Ken Burns zoom */}
+        <div id={scenes[0].id} className="absolute inset-0 z-[15]">
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute inset-0 ken-burns-zoom">
               <Image
-                src="/hero/hero-living.jpeg"
-                alt="Scott — luxury living"
+                src={scenes[0].src}
+                alt={scenes[0].alt}
                 fill
                 className="object-cover"
                 priority
                 sizes="100vw"
               />
             </div>
-            <div className="absolute inset-0 bg-black/50" />
+            <div className="absolute inset-0 bg-black/45" />
           </div>
         </div>
 
-        {/* Scene 2 — Doors (behind door panels, just a dark bg) */}
-        <div id="s2" className="absolute inset-0 bg-obsidian" />
+        {/* Scene 2 — pure dark void behind the doors, nothing else */}
+        <div id="s2" className="absolute inset-0 bg-black" />
 
         {/* Door panels — left and right halves of hero-doors.jpg */}
         <div id="door-l" className="absolute inset-y-0 left-0 w-1/2 overflow-hidden z-10">
@@ -137,10 +138,10 @@ export default function HeroSection() {
         </div>
 
         {/* Scene 3 — Living room (revealed behind doors) */}
-        <div id="s3" className="absolute inset-0">
+        <div id={scenes[1].id} className="absolute inset-0">
           <Image
-            src="/hero/hero-living.jpeg"
-            alt="Scott living collection"
+            src={scenes[1].src}
+            alt={scenes[1].alt}
             fill
             className="object-cover"
             sizes="100vw"
@@ -148,42 +149,30 @@ export default function HeroSection() {
           <div className="absolute inset-0 bg-black/45" />
         </div>
 
-        {/* Scene 4 — Pool with Ken Burns wrapper */}
-        <div id="s4" className="absolute inset-0 overflow-hidden">
+        {/* Scene 4 — Dining, Ken Burns zoom */}
+        <div id={scenes[2].id} className="absolute inset-0 overflow-hidden">
           <div className="ken-burns absolute inset-0 origin-center">
             <Image
-              src="/hero/hero-pool.jpg"
-              alt="Scott collection"
+              src={scenes[2].src}
+              alt={scenes[2].alt}
               fill
               className="object-cover"
               sizes="100vw"
             />
           </div>
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-black/45" />
         </div>
 
-        {/* Scene 5 — Bedroom */}
-        <div id="s5" className="absolute inset-0">
+        {/* Scene 5 — Pool */}
+        <div id={scenes[3].id} className="absolute inset-0">
           <Image
-            src="/hero/hero-bedroom.jpeg"
-            alt="The Sanctuary collection"
+            src={scenes[3].src}
+            alt={scenes[3].alt}
             fill
             className="object-cover"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
-
-        {/* Scene 6 — Dining */}
-        <div id="s6" className="absolute inset-0">
-          <Image
-            src="/hero/hero-dining.jpeg"
-            alt="Scott dining collection"
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-black/45" />
         </div>
 
         {/* Subtle gold atmospheric glow, sits above every scene, below the text layers */}
@@ -197,30 +186,39 @@ export default function HeroSection() {
 
         {/* ── TEXT OVERLAYS ── all z-20, pointer-events-none except CTA */}
 
-        {/* T1 — Scene 1 text: centred wordmark */}
-        <div
-          id="t1"
-          className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6 pointer-events-none"
-        >
-          <p className="font-cinzel text-gold text-xs tracking-[0.5em] uppercase mb-8">
-            Bhopal, India
+        {/* T1 — Scene 1 text: left-aligned */}
+        <div id="t1"
+          className="absolute inset-0 z-20 flex flex-col justify-center px-12
+            md:px-20 pointer-events-none"
+          style={{ opacity: 0 }}>
+          <p className="font-cinzel text-gold text-xs tracking-[0.5em] uppercase
+            mb-8">
+            India · Est. 1989
           </p>
-          <h1 className="font-cinzel text-6xl md:text-8xl lg:text-9xl tracking-[0.2em] text-cream leading-none">
-            SCOTT
+          <h1 className="font-cormorant text-6xl md:text-8xl lg:text-9xl
+            font-light text-cream leading-[0.9] mb-6">
+            Innovation<br />
+            <em className="text-gold italic">that Inspires</em>
           </h1>
-          <div className="mt-6 w-16 h-px bg-gold/60" />
-          <p className="font-cormorant text-xl md:text-2xl text-gold italic mt-6">
-            Innovation that Inspires
+          <p className="font-jost text-base md:text-lg text-cream/90 leading-relaxed
+            max-w-sm mb-10">
+            Quality that Endures — German precision,<br />
+            crafted for extraordinary homes.
           </p>
-          <p className="font-cormorant text-xl md:text-2xl text-cream/80 italic">
-            Quality that Endures
-          </p>
+          <div className="pointer-events-auto">
+            <Link href="#collections"
+              className="inline-block font-cinzel text-xs tracking-[0.25em]
+                uppercase bg-gold text-obsidian px-8 py-4
+                hover:bg-gold/90 transition-colors duration-300">
+              Explore Collections
+            </Link>
+          </div>
         </div>
 
         {/* T2 — Scene 2 (doors): single line, centred */}
         <div
           id="t2"
-          className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none"
+          className="absolute inset-0 z-20 flex items-center justify-center px-6 md:px-12 pointer-events-none"
         >
           <p className="font-cormorant text-3xl md:text-5xl font-light text-cream italic tracking-wide">
             Enter.
@@ -228,7 +226,7 @@ export default function HeroSection() {
         </div>
 
         {/* T3a/b/c — Scene 3 (living): staggered words */}
-        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-2 pointer-events-none">
+        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-2 px-6 md:px-12 pointer-events-none">
           {[
             { id: 't3a', word: 'Crafted' },
             { id: 't3b', word: 'for' },
@@ -245,7 +243,7 @@ export default function HeroSection() {
           ))}
         </div>
 
-        {/* T4 — Scene 4 (pool): right-aligned */}
+        {/* T4 — Scene 4 (dining): right-aligned */}
         <div
           id="t4"
           className="absolute inset-0 z-20 flex items-center justify-end px-12 md:px-24 pointer-events-none"
@@ -262,23 +260,10 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* T5 — Scene 5 (bedroom): centred */}
+        {/* T5 — Scene 5 (pool): centred, CTA */}
         <div
           id="t5"
-          className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center pointer-events-none"
-        >
-          <p className="font-cinzel text-gold text-xs tracking-[0.4em] uppercase mb-4">
-            The Sanctuary
-          </p>
-          <p className="font-cormorant text-5xl md:text-6xl font-light text-cream italic">
-            For those who rest with intention.
-          </p>
-        </div>
-
-        {/* T6 — Scene 6 (dining): centred, CTA */}
-        <div
-          id="t6"
-          className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6"
+          className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6 md:px-12"
         >
           <p className="font-cinzel text-gold text-xs tracking-[0.4em] uppercase mb-6">
             Scott — Bhopal
@@ -304,6 +289,18 @@ export default function HeroSection() {
         >
           <p className="font-jost text-xs text-muted/70 tracking-[0.3em] uppercase">Scroll</p>
           <div className="w-px h-12 bg-gradient-to-b from-gold/60 to-transparent" />
+        </div>
+
+        {/* Circular scroll indicator — permanent overlay */}
+        <div className="absolute bottom-10 right-10 md:right-16 z-20
+          pointer-events-none">
+          <div className="relative w-16 h-16 border border-gold/30 rounded-full
+            flex flex-col items-center justify-center gap-1
+            animate-pulse">
+            <span className="font-jost text-[7px] tracking-[0.3em] text-gold/60
+              uppercase">Scroll</span>
+            <span className="text-gold/60 text-sm">↓</span>
+          </div>
         </div>
       </div>
     </div>

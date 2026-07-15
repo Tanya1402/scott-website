@@ -2,7 +2,7 @@ interface Product {
   id: string
   name: string
   subtitle: string
-  category: 'sofas' | 'premium-sofas' | 'beds' | 'exclusive' | 'chaise'
+  category: 'sofas' | 'premium-sofas' | 'beds' | 'exclusive' | 'chaise' | 'tables'
   imagePath: string
   videoPath?: string
   imageAlt: string
@@ -90,6 +90,18 @@ const products: Product[] = [
   // CHAISE
   { id: 'chaise-01', name: 'Chaise Lounge I', subtitle: 'Sculptural repose · premium upholstery', category: 'chaise', imagePath: '/products/chaise/chaise-01.jpeg', videoPath: '/products/chaise/chaise-video.mp4', imageAlt: 'Chaise lounge I', tags: ['chaise', 'sculptural'], featured: true },
   { id: 'chaise-02', name: 'Chaise Lounge II', subtitle: 'Extended form · deep comfort', category: 'chaise', imagePath: '/products/chaise/chaise-02.jpeg', imageAlt: 'Chaise lounge II', tags: ['chaise', 'extended'] },
+
+  // TABLES
+  {
+    id: 'table-01',
+    name: 'Dining Table I',
+    subtitle: 'Premium dining · custom finish',
+    category: 'tables',
+    imagePath: '/products/tables/35FNMB42CFK2_BZ250717.webp',
+    imageAlt: 'Scott dining table',
+    tags: ['dining', 'table', 'premium'],
+    isNew: true,
+  },
 ]
 
 export default products

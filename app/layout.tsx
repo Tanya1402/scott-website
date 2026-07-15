@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import WhatsAppFloat from "@/components/ui/WhatsAppFloat";
 import CustomCursor from "@/components/ui/CustomCursor";
+import { WishlistProvider } from "@/components/wishlist/WishlistContext";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -17,7 +18,7 @@ const cormorant = Cormorant_Garamond({
 
 const cinzel = Cinzel({
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "700"],
   variable: "--font-cinzel",
   display: "swap",
 });
@@ -46,12 +47,14 @@ export default function RootLayout({
       className={`${cormorant.variable} ${cinzel.variable} ${jost.variable}`}
     >
       <body className="antialiased">
-        <ScrollProgress />
-        <CustomCursor />
-        <NavBar />
-        {children}
-        <Footer />
-        <WhatsAppFloat />
+        <WishlistProvider>
+          <ScrollProgress />
+          <CustomCursor />
+          <NavBar />
+          {children}
+          <Footer />
+          <WhatsAppFloat />
+        </WishlistProvider>
       </body>
     </html>
   );

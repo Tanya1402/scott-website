@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import BackButton from '@/components/ui/BackButton'
 
 const contactDetails = [
   {
@@ -58,6 +59,9 @@ export default function ContactPage() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/60 to-transparent" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 pb-16 w-full">
+          <div className="mb-6">
+            <BackButton />
+          </div>
           <p className="font-cinzel text-gold text-xs tracking-[0.4em] uppercase mb-4">
             Bhopal, India
           </p>
@@ -69,7 +73,7 @@ export default function ContactPage() {
 
       {/* Two-column layout */}
       <section className="py-20 px-6">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 md:gap-16">
           {/* Left — contact details + map */}
           <div>
             <p className="font-cinzel text-gold text-xs tracking-[0.4em] uppercase mb-8">
@@ -101,11 +105,12 @@ export default function ContactPage() {
             </ul>
 
             {/* Map embed */}
-            <div className="border border-gold/20 overflow-hidden">
+            <div className="border border-gold/20 overflow-hidden max-h-[300px] md:max-h-none h-[220px] md:h-[280px]">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3666.3!2d77.4026!3d23.2297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c428f8fd68fbd%3A0xcb848f2c58e09e5e!2sBHEL%20Habibganj%2C%20Bhopal%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1"
                 width="100%"
-                height="280"
+                height="100%"
+                className="w-full h-full"
                 style={{ border: 0, filter: 'grayscale(100%) contrast(1.1) brightness(0.85)' }}
                 allowFullScreen
                 loading="lazy"
@@ -219,6 +224,43 @@ export default function ContactPage() {
               </form>
             )}
           </div>
+        </div>
+      </section>
+
+      {/* Showroom video section */}
+      <section className="py-24 px-6 bg-card border-t border-gold/10">
+        <div className="max-w-7xl mx-auto">
+          <p className="font-cinzel text-gold text-xs tracking-[0.4em] uppercase text-center mb-4">
+            Currently in the Showroom
+          </p>
+          <h2 className="font-cormorant text-4xl font-light text-cream text-center mb-6">
+            See what&apos;s new
+          </h2>
+          <p className="font-jost text-sm text-muted text-center mb-12 max-w-md mx-auto leading-relaxed">
+            Visit us to see our latest arrivals and pieces currently on display. New collections
+            added regularly.
+          </p>
+
+          {/* Video placeholder — replace src with real showroom video */}
+          <div className="relative aspect-video bg-card-deep border border-gold/20 flex items-center justify-center max-w-4xl mx-auto">
+            <div className="text-center">
+              <div className="w-16 h-16 border border-gold/40 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-gold text-2xl ml-1">▶</span>
+              </div>
+              <p className="font-cinzel text-cream text-xs tracking-widest uppercase">
+                Showroom Video
+              </p>
+              <p className="font-jost text-xs text-muted mt-2">
+                Coming soon — upload your showroom footage here
+              </p>
+            </div>
+          </div>
+
+          <p className="font-jost text-xs text-muted text-center mt-8">
+            To add your video: place the file in{' '}
+            <code className="text-gold">public/showroom-video.mp4</code> and replace this
+            placeholder with an HTML5 video element.
+          </p>
         </div>
       </section>
     </main>

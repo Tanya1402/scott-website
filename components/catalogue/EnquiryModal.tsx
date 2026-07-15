@@ -42,7 +42,7 @@ export default function EnquiryModal({ isOpen, onClose, productName }: EnquiryMo
             onClick={onClose}
           />
           <motion.div
-            className="fixed inset-4 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-lg bg-card border border-gold/30 p-8 z-[101]"
+            className="fixed inset-x-0 bottom-0 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 w-full max-w-full md:max-w-lg max-h-[85vh] overflow-y-auto bg-card border border-gold/30 p-8 z-[101] rounded-t-xl md:rounded-none"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 24 }}

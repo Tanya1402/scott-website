@@ -9,12 +9,16 @@
 }
 
 :root {
-  --obsidian: #1a1a18;
+  --obsidian: #0e0c09;
   --gold: #c9a96e;
   --cream: #fdfaf5;
-  --card: #1c1c1c;
-  --card-deep: #111110;
+  --card: #120f0a;
+  --card-deep: #1a1208;
+  --card-mid: #0a0806;
   --muted: #6b6b6b;
+  --warm-border: rgba(201, 169, 110, 0.12);
+  --gold-dim: rgba(201, 169, 110, 0.35);
+  --gold-faint: rgba(201, 169, 110, 0.08);
 }
 
 ::-webkit-scrollbar {

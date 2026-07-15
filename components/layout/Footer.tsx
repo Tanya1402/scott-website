@@ -7,20 +7,21 @@ const COLLECTIONS = [
   { label: 'Beds', href: '/beds' },
   { label: 'Exclusive', href: '/exclusive' },
   { label: 'Chaise', href: '/chaise' },
+  { label: 'Tables & Dining', href: '/tables' },
   { label: 'About Us', href: '/about' },
 ]
 
 export default function Footer() {
   return (
     <footer className="bg-card-deep border-t border-gold/20 pt-16 pb-8">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto px-6">
-        <div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-7xl mx-auto px-6">
+        <div className="pb-8 md:pb-0">
           <Image
             src="/logo.png"
             alt="Scott Furniture"
-            width={100}
-            height={34}
-            className="h-auto w-auto object-contain mb-4"
+            width={130}
+            height={44}
+            className="h-[44px] w-auto object-contain mb-4"
           />
           <p className="font-cormorant italic text-muted text-lg">
             Innovation that Inspires,
@@ -33,7 +34,7 @@ export default function Footer() {
           </p>
         </div>
 
-        <div>
+        <div className="pb-8 md:pb-0">
           <p className="font-cinzel text-xs tracking-widest text-gold uppercase mb-6">
             Collections
           </p>
@@ -48,7 +49,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <div>
+        <div className="pb-8 md:pb-0">
           <p className="font-cinzel text-xs tracking-widest text-gold uppercase mb-6">
             Visit
           </p>

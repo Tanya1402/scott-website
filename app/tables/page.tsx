@@ -6,12 +6,12 @@ import { getByCategory } from '@/data/products'
 import categories from '@/data/categories'
 
 export const metadata: Metadata = {
-  title: 'Chaise Lounges — Scott Furniture',
+  title: 'Tables & Dining — Scott Furniture',
 }
 
-export default function ChaisePage() {
-  const category = categories.find((c) => c.slug === 'chaise')!
-  const products = getByCategory('chaise')
+export default function TablesPage() {
+  const category = categories.find((c) => c.slug === 'tables')!
+  const products = getByCategory('tables')
 
   return (
     <main className="min-h-screen bg-obsidian">

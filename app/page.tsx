@@ -1,12 +1,12 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { motion, type Variants } from 'framer-motion'
 import categories from '@/data/categories'
-import { getFeatured } from '@/data/products'
-import ProductCard from '@/components/catalogue/ProductCard'
+import TrustedBy from '@/components/sections/TrustedBy'
+import Certifications from '@/components/sections/Certifications'
+import CategoryCard from '@/components/home/CategoryCard'
 
 const HeroSection = dynamic(() => import('@/components/hero/HeroSection'), {
   ssr: false,
@@ -24,120 +24,57 @@ const stagger: Variants = {
 const viewport = { once: true, margin: '-60px' }
 
 export default function HomePage() {
-  const featured = getFeatured()
-
   return (
     <main>
       <HeroSection />
 
       {/* Category grid */}
-      <section className="bg-obsidian py-24 px-6">
+      <section id="collections" className="bg-obsidian py-16 md:py-24 px-4 md:px-6">
         <div className="max-w-7xl mx-auto">
-          <motion.p
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={viewport}
-            className="font-cinzel text-gold text-xs tracking-[0.4em] uppercase text-center mb-4"
-          >
-            The Collections
-          </motion.p>
-          <motion.h2
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={viewport}
-            className="font-cormorant text-4xl md:text-5xl font-light text-cream text-center mb-16"
-          >
-            Every room. Every surface. Considered.
-          </motion.h2>
-
           <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="show"
-            viewport={viewport}
-            className="grid grid-cols-2 md:grid-cols-3 gap-px bg-gold/10"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true, margin: '-60px' }}
           >
-            {categories.map((cat) => (
-              <motion.div key={cat.slug} variants={fadeUp}>
-                <Link
-                  href={`/${cat.slug}`}
-                  className="group relative aspect-[3/4] overflow-hidden bg-obsidian block"
-                >
-                  <Image
-                    src={cat.heroImage}
-                    alt={cat.label}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                    sizes="(max-width:768px) 50vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                  {cat.isPrestige && (
-                    <div className="absolute top-4 left-4 border border-gold/60 px-3 py-1">
-                      <span className="font-cinzel text-gold text-[10px] tracking-widest uppercase">
-                        Exclusive
-                      </span>
-                    </div>
-                  )}
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <p className="font-cinzel text-cream text-sm tracking-widest uppercase group-hover:text-gold transition-colors duration-300">
-                      {cat.label}
-                    </p>
-                    <p className="font-jost text-xs text-muted mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0 transition-transform">
-                      Explore →
-                    </p>
-                  </div>
-                  {/* Gold border appears on hover */}
-                  <div className="absolute inset-0 border border-gold/0 group-hover:border-gold/40 transition-all duration-500 pointer-events-none" />
-                  {/* Gold sweep line appears on hover */}
-                  <div className="absolute bottom-0 left-0 h-px bg-gold w-0 group-hover:w-full transition-all duration-700 ease-out" />
-                </Link>
-              </motion.div>
-            ))}
+            <p className="font-cinzel text-gold text-xs tracking-[0.4em]
+              uppercase text-center mb-4">The Collections</p>
+            <h2 className="font-cormorant text-3xl md:text-5xl font-light
+              text-cream text-center mb-12 md:mb-16">
+              Every room. Every surface. Considered.
+            </h2>
           </motion.div>
+
+          {/* Top row — 3 cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 mb-3 md:mb-4">
+            {['premium-sofas', 'chaise', 'exclusive'].map((slug, index) => {
+              const cat = categories.find((c) => c.slug === slug)
+              if (!cat) return null
+              return (
+                <CategoryCard key={cat.slug} cat={cat} index={index} prestige={cat.isPrestige} />
+              )
+            })}
+          </div>
+
+          {/* Bottom row — 3 cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
+            {['tables', 'beds', 'sofas'].map((slug, index) => {
+              const cat = categories.find((c) => c.slug === slug)
+              if (!cat) return null
+              return (
+                <CategoryCard key={cat.slug} cat={cat} index={index} />
+              )
+            })}
+          </div>
         </div>
       </section>
 
-      {/* Featured products strip */}
-      <section className="bg-card py-24 px-6">
-        <div className="max-w-7xl mx-auto">
-          <motion.p
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={viewport}
-            className="font-cinzel text-gold text-xs tracking-[0.4em] uppercase text-center mb-4"
-          >
-            Featured Pieces
-          </motion.p>
-          <motion.h2
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={viewport}
-            className="font-cormorant text-4xl font-light text-cream text-center mb-16"
-          >
-            From the current collection
-          </motion.h2>
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="show"
-            viewport={viewport}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gold/10"
-          >
-            {featured.map((p) => (
-              <motion.div key={p.id} variants={fadeUp} className="bg-card p-6">
-                <ProductCard product={p} />
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+      <TrustedBy />
+
+      <Certifications />
 
       {/* Client testimonials */}
-      <section className="bg-card py-24 px-6">
+      <section className="bg-[#1A1208] py-16 md:py-24 px-4 md:px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -182,7 +119,7 @@ export default function HomePage() {
             ].map(({ quote, author, location }) => (
               <motion.div
                 key={author}
-                className="bg-card p-10 border-l border-gold/30"
+                className="bg-[#1A1208] p-10 border-t-2 border-gold/20"
                 variants={{
                   hidden: { opacity: 0, y: 30 },
                   show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
@@ -203,7 +140,7 @@ export default function HomePage() {
       </section>
 
       {/* Brand statement */}
-      <section className="bg-obsidian py-32 px-6">
+      <section className="bg-card py-32 px-4 md:px-6">
         <div className="max-w-3xl mx-auto text-center">
           <p className="font-cinzel text-gold text-xs tracking-[0.4em] uppercase mb-8">
             Est. Bhopal
@@ -223,14 +160,14 @@ export default function HomePage() {
             initial="hidden"
             whileInView="show"
             viewport={viewport}
-            className="mt-16 grid grid-cols-3 gap-8 border-t border-gold/20 pt-16"
+            className="mt-16 grid grid-cols-3 gap-px border-t border-gold/20 pt-16"
           >
             {[
               ['25+', 'Years of craft'],
               ['1,200+', 'Homes furnished'],
               ['80+', 'Designs'],
             ].map(([num, label]) => (
-              <motion.div key={label} variants={fadeUp} className="text-center">
+              <motion.div key={label} variants={fadeUp} className="text-center p-6 md:p-10">
                 <p className="font-cormorant text-4xl text-gold">{num}</p>
                 <p className="font-jost text-xs text-muted tracking-widest uppercase mt-2">
                   {label}

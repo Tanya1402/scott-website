@@ -7,13 +7,22 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      xs: "380px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
+    },
     extend: {
       colors: {
-        obsidian: "#1A1A18",
+        obsidian: "#0E0C09",
         gold: "#C9A96E",
         cream: "#FDFAF5",
-        card: "#1C1C1C",
-        "card-deep": "#111110",
+        card: "#120F0A",
+        "card-deep": "#1A1208",
+        "card-mid": "#0A0806",
         muted: "#6B6B6B",
       },
       fontFamily: {
