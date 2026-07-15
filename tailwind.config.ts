@@ -9,8 +9,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        obsidian: "#1A1A18",
+        gold: "#C9A96E",
+        cream: "#FDFAF5",
+        card: "#1C1C1C",
+        "card-deep": "#111110",
+        muted: "#6B6B6B",
+      },
+      fontFamily: {
+        cormorant: ["var(--font-cormorant)", "serif"],
+        cinzel: ["var(--font-cinzel)", "serif"],
+        jost: ["var(--font-jost)", "sans-serif"],
       },
     },
   },

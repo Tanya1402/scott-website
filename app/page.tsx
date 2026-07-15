@@ -1,101 +1,253 @@
-import Image from "next/image";
+'use client'
 
-export default function Home() {
+import Image from 'next/image'
+import Link from 'next/link'
+import dynamic from 'next/dynamic'
+import { motion, type Variants } from 'framer-motion'
+import categories from '@/data/categories'
+import { getFeatured } from '@/data/products'
+import ProductCard from '@/components/catalogue/ProductCard'
+
+const HeroSection = dynamic(() => import('@/components/hero/HeroSection'), {
+  ssr: false,
+  loading: () => <div className="h-screen bg-obsidian" />,
+})
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } },
+}
+const stagger: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08 } },
+}
+const viewport = { once: true, margin: '-60px' }
+
+export default function HomePage() {
+  const featured = getFeatured()
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <main>
+      <HeroSection />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      {/* Category grid */}
+      <section className="bg-obsidian py-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={viewport}
+            className="font-cinzel text-gold text-xs tracking-[0.4em] uppercase text-center mb-4"
           >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            The Collections
+          </motion.p>
+          <motion.h2
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={viewport}
+            className="font-cormorant text-4xl md:text-5xl font-light text-cream text-center mb-16"
           >
-            Read our docs
-          </a>
+            Every room. Every surface. Considered.
+          </motion.h2>
+
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={viewport}
+            className="grid grid-cols-2 md:grid-cols-3 gap-px bg-gold/10"
+          >
+            {categories.map((cat) => (
+              <motion.div key={cat.slug} variants={fadeUp}>
+                <Link
+                  href={`/${cat.slug}`}
+                  className="group relative aspect-[3/4] overflow-hidden bg-obsidian block"
+                >
+                  <Image
+                    src={cat.heroImage}
+                    alt={cat.label}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                    sizes="(max-width:768px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  {cat.isPrestige && (
+                    <div className="absolute top-4 left-4 border border-gold/60 px-3 py-1">
+                      <span className="font-cinzel text-gold text-[10px] tracking-widest uppercase">
+                        Exclusive
+                      </span>
+                    </div>
+                  )}
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <p className="font-cinzel text-cream text-sm tracking-widest uppercase group-hover:text-gold transition-colors duration-300">
+                      {cat.label}
+                    </p>
+                    <p className="font-jost text-xs text-muted mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0 transition-transform">
+                      Explore →
+                    </p>
+                  </div>
+                  {/* Gold border appears on hover */}
+                  <div className="absolute inset-0 border border-gold/0 group-hover:border-gold/40 transition-all duration-500 pointer-events-none" />
+                  {/* Gold sweep line appears on hover */}
+                  <div className="absolute bottom-0 left-0 h-px bg-gold w-0 group-hover:w-full transition-all duration-700 ease-out" />
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+      </section>
+
+      {/* Featured products strip */}
+      <section className="bg-card py-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={viewport}
+            className="font-cinzel text-gold text-xs tracking-[0.4em] uppercase text-center mb-4"
+          >
+            Featured Pieces
+          </motion.p>
+          <motion.h2
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={viewport}
+            className="font-cormorant text-4xl font-light text-cream text-center mb-16"
+          >
+            From the current collection
+          </motion.h2>
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={viewport}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gold/10"
+          >
+            {featured.map((p) => (
+              <motion.div key={p.id} variants={fadeUp} className="bg-card p-6">
+                <ProductCard product={p} />
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Client testimonials */}
+      <section className="bg-card py-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            viewport={viewport}
+          >
+            <p className="font-cinzel text-gold text-xs tracking-[0.4em] uppercase text-center mb-4">
+              Client Stories
+            </p>
+            <h2 className="font-cormorant text-4xl font-light text-cream text-center mb-16">
+              What our patrons say
+            </h2>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-px bg-gold/10"
+            initial="hidden"
+            whileInView="show"
+            viewport={viewport}
+            variants={{ show: { transition: { staggerChildren: 0.1 } } }}
+          >
+            {[
+              {
+                quote:
+                  "The Arcadia sofa has completely transformed our drawing room. Every guest asks about it. Scott's craftsmanship is unlike anything we had seen in Bhopal or Mumbai.",
+                author: 'Priya & Vikram Malhotra',
+                location: 'Arera Colony, Bhopal',
+              },
+              {
+                quote:
+                  'We furnished our entire bungalow through Scott — from the foyer to the master bedroom. The attention to detail and quality of materials exceeded our expectations completely.',
+                author: 'Rajiv Sharma',
+                location: 'Kolar Road, Bhopal',
+              },
+              {
+                quote:
+                  'I had been searching for a truly luxurious sofa set for two years. When I visited Scott’s showroom, I knew I had found it. Perfect finish, no compromises.',
+                author: 'Dr. Meena Agrawal',
+                location: 'E-7, Bhopal',
+              },
+            ].map(({ quote, author, location }) => (
+              <motion.div
+                key={author}
+                className="bg-card p-10 border-l border-gold/30"
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
+                }}
+              >
+                <p className="text-gold text-2xl mb-6 font-cormorant leading-none">❝</p>
+                <p className="font-cormorant text-lg font-light text-cream italic leading-relaxed mb-8">
+                  {quote}
+                </p>
+                <p className="font-cinzel text-xs tracking-widest text-cream uppercase">
+                  {author}
+                </p>
+                <p className="font-jost text-xs text-muted mt-1">{location}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Brand statement */}
+      <section className="bg-obsidian py-32 px-6">
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="font-cinzel text-gold text-xs tracking-[0.4em] uppercase mb-8">
+            Est. Bhopal
+          </p>
+          <motion.blockquote
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={viewport}
+            className="font-cormorant text-3xl md:text-4xl font-light text-cream leading-relaxed italic"
+          >
+            &quot;Furniture is not purchased. It is chosen — and it remains, long after the moment
+            of choosing.&quot;
+          </motion.blockquote>
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={viewport}
+            className="mt-16 grid grid-cols-3 gap-8 border-t border-gold/20 pt-16"
+          >
+            {[
+              ['25+', 'Years of craft'],
+              ['1,200+', 'Homes furnished'],
+              ['80+', 'Designs'],
+            ].map(([num, label]) => (
+              <motion.div key={label} variants={fadeUp} className="text-center">
+                <p className="font-cormorant text-4xl text-gold">{num}</p>
+                <p className="font-jost text-xs text-muted tracking-widest uppercase mt-2">
+                  {label}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
+          <div className="mt-12">
+            <Link
+              href="/about"
+              className="font-cinzel text-xs tracking-widest uppercase text-cream border-b border-gold/40 pb-1 hover:text-gold hover:border-gold transition-colors duration-300"
+            >
+              Our story →
+            </Link>
+          </div>
+        </div>
+      </section>
+    </main>
+  )
 }
