@@ -17,13 +17,15 @@ const config: Config = {
     },
     extend: {
       colors: {
-        obsidian: "#0E0C09",
-        gold: "#C9A96E",
-        cream: "#FDFAF5",
-        card: "#120F0A",
-        "card-deep": "#1A1208",
-        "card-mid": "#0A0806",
-        muted: "#6B6B6B",
+        obsidian: "#0A100C",
+        card: "#111A14",
+        "card-deep": "#060C07",
+        "card-mid": "#1A2820",
+        gold: "#C8A96E",
+        "gold-dim": "#8B6A3A",
+        cream: "#F0EAE0",
+        "cream-warm": "#D4C4A8",
+        muted: "rgba(240,234,224,0.45)",
       },
       fontFamily: {
         cormorant: ["var(--font-cormorant)", "serif"],

@@ -65,7 +65,7 @@ export default function ContactPage() {
           <p className="font-cinzel text-gold text-xs tracking-[0.4em] uppercase mb-4">
             Bhopal, India
           </p>
-          <h1 className="font-cormorant text-5xl md:text-6xl font-light text-cream">
+          <h1 className="font-cormorant text-5xl md:text-7xl font-light text-cream">
             Visit the Showroom
           </h1>
         </div>
@@ -111,7 +111,7 @@ export default function ContactPage() {
                 width="100%"
                 height="100%"
                 className="w-full h-full"
-                style={{ border: 0, filter: 'grayscale(100%) contrast(1.1) brightness(0.85)' }}
+                style={{ border: 0, filter: 'grayscale(100%) brightness(0.7) contrast(1.1)' }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -122,7 +122,7 @@ export default function ContactPage() {
 
           {/* Right — enquiry form */}
           <div>
-            <p className="font-cinzel text-gold text-xs tracking-[0.4em] uppercase mb-8">
+            <p className="font-cinzel text-gold text-5xl md:text-6xl font-light tracking-[0.4em] uppercase mb-8">
               Send an Enquiry
             </p>
 
@@ -147,7 +147,7 @@ export default function ContactPage() {
                     name="name"
                     type="text"
                     required
-                    className="w-full bg-obsidian border border-gold/20 text-cream font-jost text-sm px-4 py-3 focus:border-gold/60 focus:outline-none transition-colors duration-300 placeholder:text-muted/40"
+                    className="w-full bg-[#111A14] border border-[rgba(200,169,110,0.2)] text-cream font-jost text-sm px-4 py-3 focus:border-[rgba(200,169,110,0.55)] focus:outline-none transition-colors duration-300 placeholder:text-muted/40"
                     placeholder="Your name"
                   />
                 </div>
@@ -161,7 +161,7 @@ export default function ContactPage() {
                     name="phone"
                     type="tel"
                     required
-                    className="w-full bg-obsidian border border-gold/20 text-cream font-jost text-sm px-4 py-3 focus:border-gold/60 focus:outline-none transition-colors duration-300 placeholder:text-muted/40"
+                    className="w-full bg-[#111A14] border border-[rgba(200,169,110,0.2)] text-cream font-jost text-sm px-4 py-3 focus:border-[rgba(200,169,110,0.55)] focus:outline-none transition-colors duration-300 placeholder:text-muted/40"
                     placeholder="+91 98765 43210"
                   />
                 </div>
@@ -175,7 +175,7 @@ export default function ContactPage() {
                     name="email"
                     type="email"
                     required
-                    className="w-full bg-obsidian border border-gold/20 text-cream font-jost text-sm px-4 py-3 focus:border-gold/60 focus:outline-none transition-colors duration-300 placeholder:text-muted/40"
+                    className="w-full bg-[#111A14] border border-[rgba(200,169,110,0.2)] text-cream font-jost text-sm px-4 py-3 focus:border-[rgba(200,169,110,0.55)] focus:outline-none transition-colors duration-300 placeholder:text-muted/40"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -187,7 +187,7 @@ export default function ContactPage() {
                   </label>
                   <select
                     name="interest"
-                    className="w-full bg-obsidian border border-gold/20 text-cream font-jost text-sm px-4 py-3 focus:border-gold/60 focus:outline-none transition-colors duration-300 appearance-none"
+                    className="w-full bg-[#111A14] border border-[rgba(200,169,110,0.2)] text-cream font-jost text-sm px-4 py-3 focus:border-[rgba(200,169,110,0.55)] focus:outline-none transition-colors duration-300 appearance-none"
                   >
                     {interests.map((i) => (
                       <option key={i} value={i} className="bg-card">
@@ -205,7 +205,7 @@ export default function ContactPage() {
                   <textarea
                     name="message"
                     rows={5}
-                    className="w-full bg-obsidian border border-gold/20 text-cream font-jost text-sm px-4 py-3 focus:border-gold/60 focus:outline-none transition-colors duration-300 placeholder:text-muted/40 resize-none"
+                    className="w-full bg-[#111A14] border border-[rgba(200,169,110,0.2)] text-cream font-jost text-sm px-4 py-3 focus:border-[rgba(200,169,110,0.55)] focus:outline-none transition-colors duration-300 placeholder:text-muted/40 resize-none"
                     placeholder="Tell us about your project or the piece you have in mind."
                   />
                 </div>

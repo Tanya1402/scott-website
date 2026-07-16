@@ -9,16 +9,17 @@
 }
 
 :root {
-  --obsidian: #0e0c09;
-  --gold: #c9a96e;
-  --cream: #fdfaf5;
-  --card: #120f0a;
-  --card-deep: #1a1208;
-  --card-mid: #0a0806;
-  --muted: #6b6b6b;
-  --warm-border: rgba(201, 169, 110, 0.12);
-  --gold-dim: rgba(201, 169, 110, 0.35);
-  --gold-faint: rgba(201, 169, 110, 0.08);
+  --obsidian: #0a100c;
+  --card: #111a14;
+  --card-deep: #060c07;
+  --card-mid: #1a2820;
+  --gold: #c8a96e;
+  --gold-dim: #8b6a3a;
+  --gold-faint: rgba(200, 169, 110, 0.1);
+  --cream: #f0eae0;
+  --cream-warm: #d4c4a8;
+  --muted: rgba(240, 234, 224, 0.45);
+  --border: rgba(200, 169, 110, 0.14);
 }
 
 ::-webkit-scrollbar {
@@ -26,17 +27,17 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1a18;
+  background: #0a100c;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c9a96e;
+  background: #c8a96e;
   border-radius: 3px;
 }
 
 ::selection {
-  background: #c9a96e;
-  color: #1a1a18;
+  background: #c8a96e;
+  color: #0a100c;
 }
 
 :focus-visible {
@@ -72,7 +73,7 @@ body {
 }
 
 .hero-animated-bg {
-  background: linear-gradient(135deg, #1a1a18 0%, #1f1c14 25%, #141412 50%, #1c1910 75%, #1a1a18 100%);
+  background: linear-gradient(135deg, #0a100c 0%, #111a14 25%, #060c07 50%, #1a2820 75%, #0a100c 100%);
   background-size: 400% 400%;
   animation: heroShift 14s ease infinite;
 }
@@ -98,4 +99,13 @@ body {
 .ken-burns-zoom {
   animation: kenBurns 20s ease-in-out infinite;
   will-change: transform;
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
 }

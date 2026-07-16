@@ -1,180 +1,284 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { AnimatePresence, motion } from 'framer-motion'
 
-const navLinks = [
-  { label: 'Sofas', href: '/sofas' },
-  { label: 'Premium', href: '/premium-sofas' },
-  { label: 'Beds', href: '/beds' },
-  { label: 'Exclusive', href: '/exclusive' },
-  { label: 'Chaise', href: '/chaise' },
-  { label: 'Tables', href: '/tables' },
-  { label: 'About', href: '/about' },
+const navigation = [
+  {
+    label: 'Indoor',
+    href: '/indoor',
+    subs: [
+      { label: 'Sofas', href: '/indoor/sofas', count: '190+' },
+      { label: 'Chairs', href: '/indoor/chairs', count: '240+' },
+      { label: 'Tables', href: '/indoor/tables', count: '130+' },
+      { label: 'Beds', href: '/indoor/beds', count: '37' },
+      { label: 'Chaise Lounges', href: '/indoor/chaise', count: '3' },
+      { label: 'Accessories', href: '/indoor/accessories', count: '29' },
+    ],
+    heroImage: '/products/indoor/sofas/premium_sofa/palazzocorner.jpeg',
+  },
+  {
+    label: 'Outdoor',
+    href: '/outdoor',
+    subs: [
+      { label: 'Lounge', href: '/outdoor/lounge', count: '140+' },
+      { label: 'Dining Chairs', href: '/outdoor/dining-chairs', count: '49' },
+    ],
+    heroImage: '/products/outdoor/lounge/img15.jpg',
+  },
+  {
+    label: 'Exclusive Edit',
+    href: '/exclusive',
+    subs: [],
+    heroImage: '/products/exclusive/img86.jpg',
+  },
+]
+
+const company = [
+  { label: 'Our Story', href: '/about' },
+  { label: 'Contact', href: '/contact' },
 ]
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [activeNav, setActiveNav] = useState<number | null>(null)
   const [scrolled, setScrolled] = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null)
+  const hoverTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
+    const fn = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', fn)
+    return () => window.removeEventListener('scroll', fn)
   }, [])
 
+  useEffect(() => {
+    function outside(e: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setMenuOpen(false)
+        setActiveNav(null)
+      }
+    }
+    if (menuOpen) document.addEventListener('mousedown', outside)
+    return () => document.removeEventListener('mousedown', outside)
+  }, [menuOpen])
+
+  function clearTimer() {
+    if (hoverTimer.current) clearTimeout(hoverTimer.current)
+  }
+
+  function startCloseTimer() {
+    hoverTimer.current = setTimeout(() => setActiveNav(null), 200)
+  }
+
+  function closeAll() {
+    setMenuOpen(false)
+    setActiveNav(null)
+  }
+
   return (
-    <>
-      {/* Main nav bar */}
-      <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-700
-        ${scrolled
-          ? 'bg-[#0E0C09]/98 backdrop-blur-md border-b border-[rgba(201,169,110,0.2)]'
-          : 'bg-[#0E0C09]/90 backdrop-blur-sm border-b border-[rgba(201,169,110,0.1)]'
-        }`}>
-        <div className="flex items-center justify-between h-[88px] px-6 md:px-12">
+    <div ref={menuRef} className="fixed top-0 left-0 right-0 z-50">
 
-          {/* Left — hamburger */}
-          <button
-            onClick={() => setMenuOpen(true)}
-            className="flex items-center gap-3 group flex-shrink-0"
-            aria-label="Open menu"
-          >
-            <div className="flex flex-col gap-[6px]">
-              <span className="block w-7 h-[1.5px] bg-gold/60
-                group-hover:bg-gold transition-colors duration-300" />
-              <span className="block w-5 h-[1.5px] bg-gold/60
-                group-hover:bg-gold transition-colors duration-300" />
-              <span className="block w-7 h-[1.5px] bg-gold/60
-                group-hover:bg-gold transition-colors duration-300" />
-            </div>
-            <span className="font-jost text-xs tracking-[0.25em]
-              text-muted group-hover:text-cream uppercase transition-colors
-              duration-300 hidden sm:block">
-              Menu
-            </span>
-          </button>
-
-          {/* Centre — SCOTT wordmark */}
-          <Link href="/" className="absolute left-1/2 -translate-x-1/2">
-            <span className="font-cinzel text-3xl sm:text-4xl md:text-5xl
-              lg:text-6xl tracking-[0.35em] sm:tracking-[0.3em]
-              md:tracking-[0.22em] lg:tracking-[0.18em]
-              text-gold hover:text-gold/80 transition-colors duration-300
-              uppercase whitespace-nowrap">
-              SCOTT
-            </span>
-          </Link>
-
-          {/* Right — icons + CTA */}
-          <div className="flex items-center gap-4 flex-shrink-0">
-            {/* Wishlist */}
-            <Link href="/wishlist" aria-label="Wishlist"
-              className="hidden sm:flex w-10 h-10 items-center justify-center
-                text-muted hover:text-gold transition-colors duration-300">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" strokeWidth="1.5">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06
-                  a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78
-                  1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-              </svg>
-            </Link>
-            {/* Bulk enquiry */}
-            <Link href="/contact" aria-label="Send enquiry"
-              className="hidden sm:flex w-10 h-10 items-center justify-center
-                text-muted hover:text-gold transition-colors duration-300">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" strokeWidth="1.5">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14
-                  a2 2 0 0 1 2 2z"/>
-              </svg>
-            </Link>
-            {/* Visit showroom CTA */}
-            <Link href="/contact"
-              className="font-cinzel text-xs tracking-[0.18em] uppercase
-                border border-gold/50 text-gold px-5 py-3
-                hover:bg-gold hover:text-obsidian transition-all duration-500
-                hidden md:block whitespace-nowrap">
-              Visit Showroom
-            </Link>
+      {/* Nav bar */}
+      <nav
+        className={`h-[66px] flex items-center justify-between
+          px-6 md:px-10 transition-all duration-500
+          ${scrolled
+            ? 'bg-[#0A100C]/98 backdrop-blur-md border-b border-[rgba(200,169,110,0.18)]'
+            : 'bg-[#0A100C]/94 backdrop-blur-sm border-b border-[rgba(200,169,110,0.10)]'
+          }`}
+      >
+        {/* Left — hamburger + Menu label */}
+        <button
+          onClick={() => { setMenuOpen(v => !v); if (menuOpen) setActiveNav(null) }}
+          className="flex items-center gap-3 group flex-shrink-0"
+          aria-label="Toggle menu"
+        >
+          <div className="flex flex-col gap-[5px]">
+            <span className={`block h-px transition-all duration-300 origin-center
+              ${menuOpen
+                ? 'w-[18px] bg-gold rotate-45 translate-y-[6px]'
+                : 'w-[18px] bg-gold/50 group-hover:bg-gold'
+              }`} />
+            <span className={`block h-px bg-gold/50 group-hover:bg-gold
+              transition-all duration-300
+              ${menuOpen ? 'w-[18px] opacity-0' : 'w-[11px]'}`} />
+            <span className={`block h-px transition-all duration-300 origin-center
+              ${menuOpen
+                ? 'w-[18px] bg-gold -rotate-45 -translate-y-[6px]'
+                : 'w-[18px] bg-gold/50 group-hover:bg-gold'
+              }`} />
           </div>
+          <span className="font-jost text-[12px] tracking-[0.22em] uppercase
+            text-[#C8A96E]/55 group-hover:text-[#C8A96E] transition-colors duration-300
+            hidden sm:block">
+            {menuOpen ? 'Close' : 'Menu'}
+          </span>
+        </button>
+
+        {/* Centre — SCOTT */}
+        <Link href="/" className="absolute left-1/2 -translate-x-1/2"
+          onClick={closeAll}>
+          <span className="font-cinzel text-[26px] md:text-[30px]
+            tracking-[0.7em] text-[#D4C4A8]
+            hover:text-[#C8A96E] transition-colors duration-300
+            uppercase whitespace-nowrap">
+            SCOTT
+          </span>
+        </Link>
+
+        {/* Right */}
+        <div className="flex items-center gap-3 md:gap-4 flex-shrink-0">
+          <Link href="/wishlist" aria-label="Wishlist"
+            className="hidden sm:flex w-9 h-9 items-center justify-center
+              text-gold/35 hover:text-gold transition-colors duration-300">
+            <svg width="17" height="17" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" strokeWidth="1.4">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67
+                l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12
+                21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </Link>
+          <Link href="/contact" aria-label="Enquire"
+            className="hidden sm:flex w-9 h-9 items-center justify-center
+              text-gold/35 hover:text-gold transition-colors duration-300">
+            <svg width="17" height="17" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" strokeWidth="1.4">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0
+                1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </Link>
+          <Link href="/contact" onClick={closeAll}
+            className="font-cinzel text-[10px] tracking-[0.16em] uppercase
+              border border-gold/40 text-gold px-5 py-2.5
+              hover:bg-gold hover:text-[#0A100C] transition-all duration-400
+              hidden md:block whitespace-nowrap">
+            Visit Showroom
+          </Link>
         </div>
       </nav>
 
-      {/* Left-side dropdown menu */}
+      {/* Dropdown — only shows when menuOpen */}
       <AnimatePresence>
         {menuOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={() => setMenuOpen(false)}
-            />
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute top-full left-0 flex
+              shadow-[0_24px_60px_rgba(0,0,0,0.65)]"
+          >
+            {/* LEFT PANEL: category list only, 220px */}
+            <div className="bg-[#0A100C] border border-t-0
+              border-[rgba(200,169,110,0.10)] w-[220px] py-4">
 
-            {/* Panel */}
-            <motion.div
-              className="fixed top-0 left-0 h-full w-[280px] sm:w-[340px] z-50
-                bg-[#0E0C09] border-r border-gold/15 flex flex-col"
-              initial={{ x: '-100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            >
-              {/* Panel header */}
-              <div className="flex items-center justify-between h-[88px]
-                px-6 border-b border-gold/10 flex-shrink-0">
-                <Link href="/" onClick={() => setMenuOpen(false)}>
-                  <span className="font-cinzel text-2xl
-                    tracking-[0.45em] text-gold uppercase">SCOTT</span>
-                </Link>
-                <button onClick={() => setMenuOpen(false)}
-                  className="relative w-6 h-6 flex-shrink-0"
-                  aria-label="Close menu">
-                  <span className="absolute top-1/2 left-0 w-6 h-px
-                    bg-gold rotate-45 -translate-y-1/2" />
-                  <span className="absolute top-1/2 left-0 w-6 h-px
-                    bg-gold -rotate-45 -translate-y-1/2" />
-                </button>
-              </div>
-
-              {/* Nav links — vertical list */}
-              <nav className="flex-1 overflow-y-auto py-2">
-                {navLinks.map((link) => (
-                  <Link key={link.href} href={link.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="block font-jost text-sm tracking-[0.2em]
-                      uppercase text-muted hover:text-gold hover:bg-gold/5
-                      transition-colors duration-300 px-6 py-4
-                      border-b border-gold/5">
-                    {link.label}
+              {navigation.map((item, i) => (
+                <div
+                  key={item.label}
+                  onMouseEnter={() => { clearTimer(); setActiveNav(i) }}
+                  onMouseLeave={startCloseTimer}
+                >
+                  <Link
+                    href={item.href}
+                    onClick={closeAll}
+                    className={`flex items-center justify-between px-5 py-3
+                      transition-colors duration-180
+                      ${activeNav === i
+                        ? 'bg-[rgba(200,169,110,0.07)]'
+                        : 'hover:bg-[rgba(200,169,110,0.04)]'
+                      }`}
+                  >
+                    <span className={`font-cormorant text-[17px] font-light
+                      transition-colors duration-200
+                      ${activeNav === i ? 'text-gold' : 'text-cream'}`}>
+                      {item.label}
+                    </span>
+                    {item.subs.length > 0 && (
+                      <span className={`text-xs transition-colors duration-200
+                        ${activeNav === i ? 'text-gold' : 'text-gold/25'}`}>
+                        ›
+                      </span>
+                    )}
                   </Link>
-                ))}
-              </nav>
-
-              {/* Panel footer */}
-              <div className="flex-shrink-0 p-6 border-t border-gold/10
-                flex flex-col gap-4">
-                <Link href="/contact" onClick={() => setMenuOpen(false)}
-                  className="text-center font-cinzel text-xs
-                    tracking-[0.18em] uppercase border border-gold/50
-                    text-gold px-5 py-3
-                    hover:bg-gold hover:text-obsidian transition-all
-                    duration-500">
-                  Visit Showroom
-                </Link>
-                <div className="font-jost text-xs text-muted space-y-1">
-                  <p>+91 94250 12129</p>
-                  <p>swoodsbpl@gmail.com</p>
-                  <p>Bhopal, India</p>
                 </div>
-              </div>
-            </motion.div>
-          </>
+              ))}
+
+              {/* Divider + company links */}
+              <div className="mx-5 my-3 h-px bg-[rgba(200,169,110,0.07)]" />
+              {company.map(item => (
+                <Link key={item.label} href={item.href} onClick={closeAll}
+                  className="block px-5 py-2 font-jost text-[11px]
+                    tracking-wide text-muted hover:text-cream
+                    transition-colors duration-200">
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+
+            {/* RIGHT PANEL: subcategories — appears on hover */}
+            <AnimatePresence>
+              {activeNav !== null &&
+               navigation[activeNav].subs.length > 0 && (
+                <motion.div
+                  key={activeNav}
+                  initial={{ opacity: 0, x: -6 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -6 }}
+                  transition={{ duration: 0.16 }}
+                  onMouseEnter={clearTimer}
+                  onMouseLeave={startCloseTimer}
+                  className="bg-[#111A14] border border-t-0 border-l-0
+                    border-[rgba(200,169,110,0.10)] w-[220px] py-4"
+                >
+                  <p className="px-5 pb-3 font-jost text-[8px]
+                    tracking-[0.38em] uppercase text-gold/28">
+                    {navigation[activeNav].label}
+                  </p>
+                  {navigation[activeNav].subs.map(sub => (
+                    <Link key={sub.href} href={sub.href} onClick={closeAll}
+                      className="flex items-center justify-between px-5 py-2.5
+                        hover:bg-[rgba(200,169,110,0.05)]
+                        transition-colors duration-180 group">
+                      <span className="font-jost text-[12px] text-muted/80
+                        group-hover:text-cream transition-colors duration-200
+                        tracking-wide">
+                        {sub.label}
+                      </span>
+                      <span className="font-jost text-[10px] text-gold/22
+                        group-hover:text-gold/50 transition-colors duration-200">
+                        {sub.count}
+                      </span>
+                    </Link>
+                  ))}
+                  {/* Preview strip */}
+                  <div className="mx-5 mt-4 relative h-[56px] overflow-hidden
+                    border-l-2 border-gold/15">
+                    <Image
+                      src={navigation[activeNav].heroImage}
+                      alt={navigation[activeNav].label}
+                      fill className="object-cover opacity-25"
+                      sizes="180px"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r
+                      from-[#111A14]/90 to-transparent" />
+                    <Link href={navigation[activeNav].href}
+                      onClick={closeAll}
+                      className="absolute inset-0 flex items-center px-3">
+                      <span className="font-cinzel text-[8px] tracking-widest
+                        uppercase text-gold/45 hover:text-gold
+                        transition-colors duration-200">
+                        View all →
+                      </span>
+                    </Link>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </div>
   )
 }

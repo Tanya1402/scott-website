@@ -39,7 +39,7 @@ export default function AboutPage() {
           <p className="font-cinzel text-gold text-xs tracking-[0.4em] uppercase mb-6">
             Est. Bhopal, India
           </p>
-          <h1 className="font-cormorant text-5xl md:text-7xl font-light text-cream leading-none">
+          <h1 className="font-cormorant text-6xl md:text-8xl font-light text-cream leading-none">
             Our Story
           </h1>
         </div>
@@ -67,7 +67,7 @@ export default function AboutPage() {
             <p className="font-cinzel text-gold text-xs tracking-[0.4em] uppercase mb-6">
               The Philosophy
             </p>
-            <h2 className="font-cormorant text-4xl font-light text-cream mb-8 leading-tight">
+            <h2 className="font-cormorant text-5xl md:text-6xl font-light text-cream mb-8 leading-tight">
               Twenty-five years of craft.
               <br />
               Not a single compromise.
@@ -121,7 +121,7 @@ export default function AboutPage() {
                 desc: 'One of only five manufacturers globally with this precision capability.',
               },
             ].map(({ num, label, desc }) => (
-              <div key={label} className="bg-obsidian p-8">
+              <div key={label} className="bg-[#111A14] p-8">
                 <p className="font-cormorant text-4xl text-gold mb-2">{num}</p>
                 <p className="font-cinzel text-cream text-xs tracking-widest uppercase mb-2">
                   {label}
@@ -134,17 +134,17 @@ export default function AboutPage() {
       </section>
 
       {/* Project highlights */}
-      <section className="bg-card py-16 md:py-24 px-6">
+      <section className="bg-[#0A100C] py-16 md:py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <p className="font-cinzel text-gold text-xs tracking-[0.4em] uppercase text-center mb-4">
             Project Highlights
           </p>
-          <h2 className="font-cormorant text-4xl font-light text-cream text-center mb-16">
+          <h2 className="font-cormorant text-5xl md:text-6xl font-light text-cream text-center mb-16">
             Trusted by India&apos;s finest institutions
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gold/10">
             {projects.map(({ name, category }) => (
-              <div key={name} className="bg-card p-10">
+              <div key={name} className="bg-[#111A14] p-10">
                 <p className="font-cinzel text-gold text-[10px] tracking-widest uppercase mb-3">
                   {category}
                 </p>
@@ -157,7 +157,9 @@ export default function AboutPage() {
 
       <TrustedBy />
 
-      <Certifications />
+      <div className="bg-[#C8A96E]">
+        <Certifications />
+      </div>
 
       {/* Full-bleed image with quote */}
       <section className="relative h-[50vh]">

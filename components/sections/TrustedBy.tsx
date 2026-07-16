@@ -73,15 +73,15 @@ export default function TrustedBy() {
   const client = clients[current]
 
   return (
-    <section className="bg-card py-20 md:py-28 px-6 md:px-10
+    <section className="py-20 md:py-28 px-6 md:px-10
       border-y border-gold/10">
       <div className="max-w-7xl mx-auto">
-        <h2 className="font-cormorant text-4xl md:text-5xl font-light
-          text-cream text-center mb-3">Trusted By</h2>
-        <p className="font-jost text-xs md:text-sm tracking-[0.3em]
-          text-gold/70 uppercase text-center mb-16">
+        <p className="font-jost text-[10px] tracking-[0.4em]
+          text-[#C8A96E] uppercase text-center mb-3">Trusted By</p>
+        <h2 className="font-cormorant text-5xl md:text-6xl font-light
+          text-[#F0EAE0] text-center mb-16">
           In distinguished company
-        </p>
+        </h2>
 
         <div className="relative max-w-4xl mx-auto">
           {/* Left arrow */}
@@ -89,7 +89,7 @@ export default function TrustedBy() {
             className="absolute left-0 top-1/2 -translate-y-1/2
               -translate-x-14 md:-translate-x-16 z-10
               w-10 h-10 border border-gold/30 bg-card
-              flex items-center justify-center text-gold
+              flex items-center justify-center text-[#C8A96E]
               hover:border-gold hover:bg-gold/10
               transition-all duration-300">
             ←
@@ -100,7 +100,7 @@ export default function TrustedBy() {
             className="absolute right-0 top-1/2 -translate-y-1/2
               translate-x-14 md:translate-x-16 z-10
               w-10 h-10 border border-gold/30 bg-card
-              flex items-center justify-center text-gold
+              flex items-center justify-center text-[#C8A96E]
               hover:border-gold hover:bg-gold/10
               transition-all duration-300">
             →
@@ -125,7 +125,7 @@ export default function TrustedBy() {
               >
                 {/* Image side */}
                 <div className="relative min-h-[200px] md:min-h-[280px]
-                  bg-[#1A1208]">
+                  bg-[#111A14]">
                   {client.image ? (
                     <>
                       <Image
@@ -136,7 +136,7 @@ export default function TrustedBy() {
                         sizes="(max-width:768px) 100vw, 50vw"
                       />
                       <div className="absolute inset-0 bg-gradient-to-r
-                        from-transparent to-[#120F0A]/70" />
+                        from-transparent to-[#111A14]/70" />
                     </>
                   ) : (
                     <div className="absolute inset-0 flex items-center
@@ -148,17 +148,18 @@ export default function TrustedBy() {
                 </div>
 
                 {/* Text side */}
-                <div className="bg-[#120F0A] p-10 md:p-14 flex flex-col
+                <div className="bg-[#111A14] p-10 md:p-14 flex flex-col
                   justify-center">
-                  <p className="font-jost text-[9px] tracking-[0.4em]
-                    text-gold uppercase mb-4">
+                  <p className="font-jost text-[10px] tracking-[0.35em]
+                    text-[#C8A96E] uppercase mb-4">
                     {client.category}
                   </p>
                   <h3 className="font-cormorant text-3xl md:text-4xl
-                    font-light text-cream mb-5 leading-tight">
+                    font-light text-[#F0EAE0] mb-5 leading-tight">
                     {client.name}
                   </h3>
-                  <p className="font-jost text-sm text-muted leading-relaxed">
+                  <p className="font-jost text-[12px] text-[rgba(240,234,224,0.6)]
+                    leading-relaxed">
                     {client.description}
                   </p>
                 </div>
@@ -179,7 +180,7 @@ export default function TrustedBy() {
               />
             ))}
           </div>
-          <p className="font-jost text-[10px] text-gold/30 tracking-[0.15em]
+          <p className="font-jost text-[10px] text-[rgba(200,169,110,0.35)] tracking-[0.15em]
             text-center mt-3">
             {String(current + 1).padStart(2, '0')} / {String(clients.length).padStart(2, '0')}
           </p>
