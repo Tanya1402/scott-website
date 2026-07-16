@@ -19,9 +19,9 @@ export default function IndoorSubPage({ params }: Props) {
   const products = getBySubCategory(params.sub)
   return (
     <main className="min-h-screen bg-obsidian">
-      <section className="relative h-[45vh] md:h-[55vh] flex items-end">
+      <section className="relative h-[45vh] md:h-[55vh] flex items-end bg-card-deep">
         <Image src={sub.heroImage} alt={sub.label}
-          fill className="object-cover" priority />
+          fill className={sub.heroFit === 'contain' ? 'object-contain' : 'object-cover'} priority />
         <div className="absolute inset-0 bg-gradient-to-t
           from-obsidian via-obsidian/50 to-transparent" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 pb-14 w-full">

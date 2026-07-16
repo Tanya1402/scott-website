@@ -10,6 +10,10 @@ export interface SubCategory {
   label: string
   description: string
   heroImage: string
+  heroVideo?: string
+  heroFit?: 'cover' | 'contain'
+  // Pre-composed square grid-tile image (falls back to heroImage if unset)
+  tileImage?: string
   filters?: CategoryFilter[]
 }
 
@@ -33,6 +37,8 @@ const categories: MainCategoryDef[] = [
         label: 'Sofas',
         description: 'Standard, premium, ottoman and recliner compositions.',
         heroImage: '/products/indoor/sofas/premium_sofa/palazzocorner.jpeg',
+        heroVideo: '/products/indoor/sofas/premium_sofa/premium-sofa-video.mp4',
+        tileImage: '/products/indoor/sofas/premium_sofa/palazzocorner-tile.jpg',
         filters: [
           { key: 'all', label: 'All' },
           { key: 'standard', label: 'Standard' },
@@ -45,7 +51,9 @@ const categories: MainCategoryDef[] = [
         slug: 'chairs',
         label: 'Chairs',
         description: 'Dining, office, side, massage chairs and ottomans.',
-        heroImage: '/products/indoor/chairs/diningchair/img6.jpg',
+        heroImage: '/products/exclusive/img118.jpg',
+        heroFit: 'contain',
+        tileImage: '/products/exclusive/img118-tile.jpg',
         filters: [
           { key: 'all', label: 'All' },
           { key: 'dining', label: 'Dining Chairs' },
@@ -58,8 +66,9 @@ const categories: MainCategoryDef[] = [
         slug: 'tables',
         label: 'Tables',
         description: 'Dining, centre, end, side and office tables.',
-        heroImage: '/products/indoor/tables/centreendtable/img272.jpg',
-        
+        heroImage: '/products/indoor/tables/centreendtable/img222.jpg',
+        heroFit: 'contain',
+        tileImage: '/products/indoor/tables/centreendtable/img222-tile.jpg',
         filters: [
           { key: 'all', label: 'All' },
           { key: 'dining', label: 'Dining Tables' },
@@ -72,19 +81,23 @@ const categories: MainCategoryDef[] = [
         slug: 'beds',
         label: 'Beds',
         description: 'Platform beds and wingback headboards for the master suite.',
-        heroImage: '/products/indoor/beds/34.jpg',
+        heroImage: '/products/indoor/beds/havenwing.jpg',
+        heroVideo: '/products/indoor/beds/bed-video.mp4',
       },
       {
         slug: 'chaise',
         label: 'Chaise Lounges',
         description: 'Sculptural chaise lounges for the considered interior.',
         heroImage: '/products/indoor/chaise/chaise-01.jpeg',
+        tileImage: '/products/indoor/chaise/chaise-01-tile.jpg',
       },
       {
         slug: 'accessories',
         label: 'Accessories',
         description: 'Considered accessories to complete every room.',
-        heroImage: '/products/indoor/accessories/img6.jpg',
+        heroImage: '/products/indoor/accessories/imgacc.jpg',
+        heroFit: 'contain',
+        tileImage: '/products/indoor/accessories/imgacc-tile.jpg',
       },
     ],
   },
@@ -104,7 +117,7 @@ const categories: MainCategoryDef[] = [
         slug: 'dining-chairs',
         label: 'Outdoor Dining Chairs',
         description: 'Dining chairs designed for outdoor use.',
-        heroImage: '/products/outdoor/dining/img6.jpg',
+        heroImage: '/products/outdoor/dining/img18.jpg',
       },
     ],
   },

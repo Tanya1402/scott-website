@@ -3,6 +3,7 @@ import { useRef, useState } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import type { Product } from '@/data/products'
+import { useWishlist } from '@/components/wishlist/WishlistContext'
 
 interface Props {
   product: Product
@@ -12,6 +13,8 @@ interface Props {
 export default function ProductCard({ product, onClick }: Props) {
   const [hovered, setHovered] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
+  const { isWishlisted, toggle } = useWishlist()
+  const wishlisted = isWishlisted(product.id)
 
   function handleMouseEnter() {
     setHovered(true)
@@ -80,6 +83,23 @@ export default function ProductCard({ product, onClick }: Props) {
               tracking-widest uppercase">Exclusive</span>
           </div>
         )}
+        <button
+          onClick={(e) => { e.stopPropagation(); toggle(product.id) }}
+          aria-label={wishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
+          aria-pressed={wishlisted}
+          className="absolute top-3 right-3 z-10 w-8 h-8 flex items-center
+            justify-center rounded-full bg-obsidian/60 backdrop-blur-sm
+            hover:bg-obsidian/80 transition-colors duration-300"
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24"
+            fill={wishlisted ? 'currentColor' : 'none'}
+            stroke="currentColor" strokeWidth="1.5"
+            className="text-gold">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06
+              a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78
+              1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </button>
       </div>
       <div className="pt-3 pb-5">
         <p className="font-cinzel text-[10px] tracking-widest text-cream

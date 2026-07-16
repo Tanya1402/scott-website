@@ -1,11 +1,13 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import ProductCard from './ProductCard'
 import ProductLightbox from './ProductLightbox'
 import EnquiryModal from './EnquiryModal'
 import type { Product } from '@/data/products'
 import type { CategoryFilter } from '@/data/categories'
+
+const PAGE_SIZE = 24
 
 interface Props {
   products: Product[]
@@ -14,16 +16,43 @@ interface Props {
 
 export default function FilteredProductGrid({ products, filters }: Props) {
   const [activeFilter, setActiveFilter] = useState('all')
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
   const [lightboxProduct, setLightboxProduct] = useState<Product | null>(null)
   const [enquiryProduct, setEnquiryProduct] = useState<string>('')
   const [enquiryOpen, setEnquiryOpen] = useState(false)
+  const sentinelRef = useRef<HTMLDivElement>(null)
 
-  const displayed = !filters || activeFilter === 'all'
+  const filtered = !filters || activeFilter === 'all'
     ? products
     : products.filter(p => p.filterKey === activeFilter)
 
+  const displayed = filtered.slice(0, visibleCount)
+  const hasMore = visibleCount < filtered.length
+
+  // Reset pagination whenever the active filter or product set changes
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE)
+  }, [activeFilter, products])
+
+  // Infinite scroll: grow the visible window as the sentinel nears the viewport
+  useEffect(() => {
+    if (!hasMore) return
+    const node = sentinelRef.current
+    if (!node) return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setVisibleCount((c) => Math.min(c + PAGE_SIZE, filtered.length))
+        }
+      },
+      { rootMargin: '800px' }
+    )
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [hasMore, filtered.length])
+
   const lightboxIndex = lightboxProduct
-    ? displayed.findIndex(p => p.id === lightboxProduct.id)
+    ? filtered.findIndex(p => p.id === lightboxProduct.id)
     : -1
 
   function openLightbox(product: Product) {
@@ -36,13 +65,13 @@ export default function FilteredProductGrid({ products, filters }: Props) {
 
   function prevProduct() {
     if (lightboxIndex > 0) {
-      setLightboxProduct(displayed[lightboxIndex - 1])
+      setLightboxProduct(filtered[lightboxIndex - 1])
     }
   }
 
   function nextProduct() {
-    if (lightboxIndex < displayed.length - 1) {
-      setLightboxProduct(displayed[lightboxIndex + 1])
+    if (lightboxIndex < filtered.length - 1) {
+      setLightboxProduct(filtered[lightboxIndex + 1])
     }
   }
 
@@ -106,12 +135,15 @@ export default function FilteredProductGrid({ products, filters }: Props) {
             ))}
           </motion.div>
         )}
+        {hasMore && (
+          <div ref={sentinelRef} className="h-1 w-full" aria-hidden="true" />
+        )}
       </div>
 
       {/* Lightbox */}
       <ProductLightbox
         product={lightboxProduct}
-        products={displayed}
+        products={filtered}
         onClose={closeLightbox}
         onEnquire={handleEnquire}
         onPrev={prevProduct}

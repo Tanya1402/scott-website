@@ -167,12 +167,13 @@ export default function NavBar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute top-full left-0 flex
+            className="absolute top-full left-0 flex flex-col sm:flex-row
+              w-screen sm:w-auto max-w-[100vw]
               shadow-[0_24px_60px_rgba(0,0,0,0.65)]"
           >
             {/* LEFT PANEL: category list only, 220px */}
             <div className="bg-[#0A100C] border border-t-0
-              border-[rgba(200,169,110,0.10)] w-[220px] py-4">
+              border-[rgba(200,169,110,0.10)] w-full sm:w-[220px] py-4">
 
               {navigation.map((item, i) => (
                 <div
@@ -229,8 +230,8 @@ export default function NavBar() {
                   transition={{ duration: 0.16 }}
                   onMouseEnter={clearTimer}
                   onMouseLeave={startCloseTimer}
-                  className="bg-[#111A14] border border-t-0 border-l-0
-                    border-[rgba(200,169,110,0.10)] w-[220px] py-4"
+                  className="bg-[#111A14] border border-t-0 sm:border-l-0
+                    border-[rgba(200,169,110,0.10)] w-full sm:w-[220px] py-4"
                 >
                   <p className="px-5 pb-3 font-jost text-[8px]
                     tracking-[0.38em] uppercase text-gold/28">
