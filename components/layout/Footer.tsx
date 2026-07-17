@@ -24,7 +24,7 @@ export default function Footer() {
             Quality that Endures.
           </p>
           <p className="font-jost text-[11px] text-[rgba(240,234,224,0.4)] tracking-wide">
-            Bhopal, Madhya Pradesh
+            India
           </p>
         </div>
 
@@ -47,12 +47,6 @@ export default function Footer() {
           <p className="font-cinzel text-[9px] tracking-[0.35em] uppercase text-[#C8A96E]/50 mb-4">
             Visit
           </p>
-          <p className="font-jost text-[11px] text-[rgba(240,234,224,0.4)] mb-3">
-            36, BHEL Ancillary Industrial Estate
-          </p>
-          <p className="font-jost text-[11px] text-[rgba(240,234,224,0.4)] mb-3">
-            Habibganj, Bhopal M.P. 462024
-          </p>
           <a
             href="tel:+919425012129"
             className="block mb-3 font-jost text-[11px] text-[#C8A96E]/65 hover:text-[#C8A96E] transition-colors duration-300"
@@ -60,23 +54,23 @@ export default function Footer() {
             +91 94250 12129
           </a>
           <a
-            href="tel:+919229229292"
+            href="tel:+18123454823"
             className="block mb-3 font-jost text-[11px] text-[#C8A96E]/65 hover:text-[#C8A96E] transition-colors duration-300"
           >
-            +91 92292 29292
+            +1 812 345 4823
           </a>
           <a
-            href="mailto:swoodsbpl@gmail.com"
+            href="mailto:vinsunbpl@gmail.com"
             className="block font-jost text-[11px] text-[rgba(240,234,224,0.4)] hover:text-[rgba(240,234,224,0.8)] transition-colors duration-300"
           >
-            swoodsbpl@gmail.com
+            vinsunbpl@gmail.com
           </a>
         </div>
       </div>
 
       <div className="mt-16 pt-8 border-t border-[rgba(200,169,110,0.07)] max-w-7xl mx-auto px-6 flex justify-between text-[9px] font-jost text-[rgba(200,169,110,0.22)] tracking-[0.08em]">
-        <p>© 2025 Scott Furniture. Crafted in Bhopal.</p>
-        <p>Enquire: swoodsbpl@gmail.com</p>
+        <p>© 2025 Scott Furniture. Crafted in India.</p>
+        <p>Enquire: vinsunbpl@gmail.com</p>
       </div>
     </footer>
   )

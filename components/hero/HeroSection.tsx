@@ -9,7 +9,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const scenes = [
-  { id: 's1', src: '/hero/hero-exterior.jpg', alt: 'Scott — Bhopal' },
+  { id: 's1', src: '/hero/hero-exterior.jpg', alt: 'Scott' },
   { id: 's3', src: '/hero/hero-living.jpg', alt: 'Scott living collection' },
   { id: 's4', src: '/hero/hero-dining.jpg', alt: 'Scott dining collection' },
   { id: 's5', src: '/hero/hero-pool.jpg', alt: 'Scott collection' },
@@ -193,7 +193,7 @@ export default function HeroSection() {
           style={{ opacity: 0 }}>
           <p className="font-cinzel text-gold text-xs tracking-[0.5em] uppercase
             mb-8">
-            India · Est. 1989
+            India · Est. 1991
           </p>
           <h1 className="font-cormorant text-6xl md:text-8xl lg:text-9xl
             font-light text-cream leading-[0.9] mb-6">
@@ -266,7 +266,7 @@ export default function HeroSection() {
           className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6 md:px-12"
         >
           <p className="font-cinzel text-gold text-xs tracking-[0.4em] uppercase mb-6">
-            Scott — Bhopal
+            Scott — India
           </p>
           <p className="font-cormorant text-4xl md:text-6xl font-light text-cream mb-2">
             Innovation that Inspires.

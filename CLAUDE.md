@@ -6,21 +6,21 @@ Read this file at the start of every Claude Code session. Do not skip it.
 
 ## Project Identity
 
-**Brand:** SCOTT — Premium luxury furniture, Bhopal, Madhya Pradesh, India
+**Brand:** SCOTT — Premium luxury furniture, India
 **Tagline:** Innovation that Inspires, Quality that Endures
 **Target audience:** High-net-worth homeowners, interior designers, hotel procurement, architects
 **Quality bar:** Minotti.com meets RH.com. Never a generic e-commerce feel.
-**Contact:** swoodsbpl@gmail.com | +91 94250 12129 | +91 92292 29292
-**Address:** 36, BHEL Ancillary Industrial Estate, Habibganj, Bhopal, M.P. 462024
+**Contact:** vinsunbpl@gmail.com | Rakesh Jain +91 94250 12129 | Tanya Jain +1 812 345 4823
+**Address:** No physical address is displayed on the site. Do not reintroduce one.
 
 ---
 
 ## What This Site Is (and Is Not)
 
 This is a **luxury brand showcase** — not a shop. It exists to:
-1. Establish premium positioning for Scott in Bhopal and beyond
+1. Establish premium positioning for Scott in India and beyond
 2. Display the product catalogue with editorial weight
-3. Drive showroom visits and WhatsApp/email enquiries
+3. Drive showroom visits and phone/email enquiries
 
 It is NOT:
 - An e-commerce store (no cart, no checkout, no payment)
@@ -102,7 +102,6 @@ components/
   ui/
     CustomCursor.tsx       ← 'use client', gold dot + ring follower, hide on touch devices
     ScrollProgress.tsx     ← 'use client', gold 1px top progress bar
-    WhatsAppFloat.tsx      ← Fixed bottom-right WhatsApp button (always visible)
   layout/
     NavBar.tsx             ← 'use client', transparent → dark on scroll, mobile hamburger
     Footer.tsx             ← Three-column, brand info, links, contact
@@ -321,7 +320,7 @@ interface EnquiryModalProps {
 5. Mobile-first Tailwind: base classes for mobile, `md:` and `lg:` for larger screens
 6. `CustomCursor` hides on touch: `if (navigator.maxTouchPoints > 0) return null`
 7. EnquiryModal is the only enquiry path — no separate enquiry pages
-8. WhatsApp float button is always visible on all pages
+8. No WhatsApp button/link anywhere on the site — removed intentionally, do not reintroduce
 
 ---
 
@@ -379,9 +378,11 @@ All text in the UI should sound like **a luxury Italian furniture brand** — no
 
 Tagline: "Innovation that Inspires, Quality that Endures"
 
-Stats: 25+ years of craft | 1,200+ homes furnished | 80+ designs in catalogue
+Stats: 35+ years of craft | 1,200+ homes furnished | 80+ designs in catalogue
 
-Brand para: "Founded in the heart of Bhopal, Scott has spent over two decades perfecting the relationship between craft and comfort. Every piece begins as a conversation — about how you live, what you value, and how a room should feel at the end of the day. Our furniture carries the weight of honest materials, precise construction, and the belief that the objects you live with should be worth living with."
+Est. 1991.
+
+Brand para: "Founded in the heart of India, Scott has spent over three decades perfecting the relationship between craft and comfort. Every piece begins as a conversation — about how you live, what you value, and how a room should feel at the end of the day. Our furniture carries the weight of honest materials, precise construction, and the belief that the objects you live with should be worth living with."
 
 ---
 
@@ -399,7 +400,7 @@ Final session only:
 - [ ] `npm run start` serves production build without errors
 - [ ] All six hero images display correctly
 - [ ] EnquiryModal opens and closes on mobile
-- [ ] WhatsApp float visible on all pages
+- [ ] No WhatsApp button/link present anywhere
 
 ---
 
@@ -413,7 +414,7 @@ Do not build these even if asked in the moment:
 - Search functionality
 - Cookie consent banner
 - Wishlist with persistence (heart icon is visual only)
-- Live chat widget (WhatsApp CTA is enough)
+- Live chat widget or WhatsApp button (phone/email enquiry is enough)
 - Blog or news section
 - Stock/availability indicators
 - components/sections/ extraction (content is inline in pages — this is fine)

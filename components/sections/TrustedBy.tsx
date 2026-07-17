@@ -7,13 +7,13 @@ const clients = [
   {
     name: 'Hyatt Regency',
     category: 'Luxury Hospitality',
-    description: 'Premium guest room and lobby furniture for one of Bhopal\'s landmark hospitality destinations.',
+    description: 'Premium guest room and lobby furniture for one of India\'s landmark hospitality destinations.',
     image: '/projects/hyatt.jpg',
   },
   {
     name: 'Airport Authority of India',
     category: 'Infrastructure',
-    description: 'Large-scale seating and lounge furniture for Bhopal airport terminals.',
+    description: 'Large-scale seating and lounge furniture for airport terminals across India.',
     image: '/projects/airport.jpg',
   },
   {

@@ -4,7 +4,6 @@ import "./globals.css";
 import NavBar from "@/components/layout/NavBar";
 import Footer from "@/components/layout/Footer";
 import ScrollProgress from "@/components/ui/ScrollProgress";
-import WhatsAppFloat from "@/components/ui/WhatsAppFloat";
 import CustomCursor from "@/components/ui/CustomCursor";
 import { WishlistProvider } from "@/components/wishlist/WishlistContext";
 
@@ -33,7 +32,7 @@ const jost = Jost({
 export const metadata: Metadata = {
   title: "Scott — Innovation that Inspires, Quality that Endures",
   description:
-    "Luxury furniture crafted in Bhopal. Sofas, chairs, beds and exclusive pieces for extraordinary homes.",
+    "Luxury furniture crafted in India. Sofas, chairs, beds and exclusive pieces for extraordinary homes.",
 };
 
 export default function RootLayout({
@@ -53,7 +52,6 @@ export default function RootLayout({
           <NavBar />
           {children}
           <Footer />
-          <WhatsAppFloat />
         </WishlistProvider>
       </body>
     </html>

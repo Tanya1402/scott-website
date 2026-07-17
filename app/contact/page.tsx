@@ -5,15 +5,9 @@ import Image from 'next/image'
 import BackButton from '@/components/ui/BackButton'
 
 const contactDetails = [
-  {
-    label: 'Address',
-    value: '36, BHEL Ancillary Industrial Estate, Habibganj, Bhopal M.P. 462024',
-    href: 'https://maps.google.com/?q=36+BHEL+Ancillary+Industrial+Estate+Habibganj+Bhopal',
-  },
   { label: 'Rakesh Jain', value: '+91 94250 12129', href: 'tel:+919425012129' },
-  { label: 'Arun Jain', value: '+91 92292 29292', href: 'tel:+919229229292' },
-  { label: 'Email', value: 'swoodsbpl@gmail.com', href: 'mailto:swoodsbpl@gmail.com' },
-  { label: 'Hours', value: 'Monday – Saturday, 10am – 7pm', href: null },
+  { label: 'Tanya Jain', value: '+1 812 345 4823', href: 'tel:+18123454823' },
+  { label: 'Email', value: 'vinsunbpl@gmail.com', href: 'mailto:vinsunbpl@gmail.com' },
 ]
 
 const interests = [
@@ -63,7 +57,7 @@ export default function ContactPage() {
             <BackButton />
           </div>
           <p className="font-cinzel text-gold text-xs tracking-[0.4em] uppercase mb-4">
-            Bhopal, India
+            India
           </p>
           <h1 className="font-cormorant text-5xl md:text-7xl font-light text-cream">
             Visit the Showroom
@@ -103,21 +97,6 @@ export default function ContactPage() {
                 </li>
               ))}
             </ul>
-
-            {/* Map embed */}
-            <div className="border border-gold/20 overflow-hidden max-h-[300px] md:max-h-none h-[220px] md:h-[280px]">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3666.3!2d77.4026!3d23.2297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c428f8fd68fbd%3A0xcb848f2c58e09e5e!2sBHEL%20Habibganj%2C%20Bhopal%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1"
-                width="100%"
-                height="100%"
-                className="w-full h-full"
-                style={{ border: 0, filter: 'grayscale(100%) brightness(0.7) contrast(1.1)' }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Scott Furniture showroom location"
-              />
-            </div>
           </div>
 
           {/* Right — enquiry form */}
@@ -255,12 +234,6 @@ export default function ContactPage() {
               </p>
             </div>
           </div>
-
-          <p className="font-jost text-xs text-muted text-center mt-8">
-            To add your video: place the file in{' '}
-            <code className="text-gold">public/showroom-video.mp4</code> and replace this
-            placeholder with an HTML5 video element.
-          </p>
         </div>
       </section>
     </main>

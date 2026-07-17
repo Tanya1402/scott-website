@@ -210,9 +210,9 @@ export default function NavBar() {
               <div className="mx-5 my-3 h-px bg-[rgba(200,169,110,0.07)]" />
               {company.map(item => (
                 <Link key={item.label} href={item.href} onClick={closeAll}
-                  className="block px-5 py-2 font-jost text-[11px]
-                    tracking-wide text-muted hover:text-cream
-                    transition-colors duration-200">
+                  className={item.label === 'Our Story'
+                    ? 'block px-5 py-2 text-[#C8A96E] text-[14px] tracking-wide font-cormorant'
+                    : 'block px-5 py-2 font-jost text-[11px] tracking-wide text-muted hover:text-cream transition-colors duration-200'}>
                   {item.label}
                 </Link>
               ))}

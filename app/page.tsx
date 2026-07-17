@@ -66,7 +66,7 @@ export default function HomePage() {
           {[...Array(3)].map((_, rep) => (
             <span key={rep} className="flex gap-10 flex-shrink-0">
               {['Sofas', 'Chairs', 'Tables', 'Beds', 'Outdoor Lounge',
-                'Exclusive Edit', 'Bhopal, India', 'Est. 1989',
+                'Exclusive Edit', 'India', 'Est. 1991',
                 'German Precision', 'BIFMA Certified'].map((item, i) => (
                 <span key={i} className="flex items-center gap-10">
                   <span className="font-jost text-[9px] tracking-[0.4em]
@@ -299,19 +299,19 @@ export default function HomePage() {
             bg-[rgba(200,169,110,0.08)]">
             {[
               {
-                quote: 'The Arcadia sofa has completely transformed our drawing room. Every guest asks about it. Scott\'s craftsmanship is unlike anything we had seen in Bhopal or Mumbai.',
+                quote: 'The Arcadia sofa has completely transformed our drawing room. Every guest asks about it. Scott\'s craftsmanship is unlike anything we had seen in Mumbai.',
                 author: 'Priya & Vikram Malhotra',
-                location: 'Arera Colony, Bhopal',
+                location: 'Arera Colony, India',
               },
               {
                 quote: 'We furnished our entire bungalow through Scott — from the foyer to the master bedroom. The attention to detail and quality of materials exceeded our expectations completely.',
                 author: 'Rajiv Sharma',
-                location: 'Kolar Road, Bhopal',
+                location: 'Kolar Road, India',
               },
               {
                 quote: 'I had been searching for a truly luxurious sofa set for two years. When I visited Scott\'s showroom, I knew I had found it. Perfect finish, no compromises.',
                 author: 'Dr. Meena Agrawal',
-                location: 'E-7, Bhopal',
+                location: 'E-7, India',
               },
             ].map(({ quote, author, location }) => (
               <div key={author}
@@ -341,7 +341,7 @@ export default function HomePage() {
           bg-[rgba(10,16,12,0.15)]">
           <div className="bg-[#8B6A3A] px-8 md:px-14 py-14 md:py-20">
             <p className="font-jost text-[10px] tracking-[0.45em] uppercase
-              text-[rgba(240,234,224,0.7)] mb-5">Est. Bhopal · Since 1989</p>
+              text-[rgba(240,234,224,0.7)] mb-5">Est. 1991 · India</p>
             <h2 className="font-cormorant text-5xl md:text-7xl font-light
               text-[#F0EAE0] leading-[1.05] mb-6">
               Thirty-five years.<br />
@@ -351,7 +351,7 @@ export default function HomePage() {
             </h2>
             <p className="font-jost text-[13px] text-[rgba(240,234,224,0.7)]
               leading-relaxed mb-8 max-w-sm">
-              Founded in the heart of Bhopal, Scott has spent over three
+              Founded in the heart of India, Scott has spent over three
               decades perfecting the relationship between craft and comfort.
               German precision. Honest materials. Pieces built to last
               generations.
@@ -408,8 +408,8 @@ export default function HomePage() {
             },
             {
               n: '04',
-              title: "Bhopal's Finest",
-              text: '36, BHEL Ancillary Estate, Habibganj. Visit by appointment.',
+              title: "India's Finest",
+              text: 'Visit our showroom by appointment.',
             },
           ].map(({ n, title, text }) => (
             <div key={n}

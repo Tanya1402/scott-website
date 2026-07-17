@@ -37,7 +37,7 @@ export default function AboutPage() {
             <BackButton />
           </div>
           <p className="font-cinzel text-gold text-xs tracking-[0.4em] uppercase mb-6">
-            Est. Bhopal, India
+            Est. 1991
           </p>
           <h1 className="font-cormorant text-6xl md:text-8xl font-light text-cream leading-none">
             Our Story
@@ -68,13 +68,13 @@ export default function AboutPage() {
               The Philosophy
             </p>
             <h2 className="font-cormorant text-5xl md:text-6xl font-light text-cream mb-8 leading-tight">
-              Twenty-five years of craft.
+              Thirty-five years of craft.
               <br />
               Not a single compromise.
             </h2>
             <div className="space-y-6 font-jost text-sm text-muted leading-relaxed">
               <p>
-                Founded in Bhopal, Scott has spent over two decades perfecting the relationship
+                Founded in India, Scott has spent over three decades perfecting the relationship
                 between craft and comfort. Every piece begins as a conversation — about how you
                 live, what you value, and how a room should feel at the end of the day.
               </p>
@@ -101,9 +101,9 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gold/10">
             {[
               {
-                num: '25+',
+                num: '35+',
                 label: 'Years of craft',
-                desc: 'Established in Bhopal, shaping interiors across central India.',
+                desc: 'Established in India, shaping interiors nationwide.',
               },
               {
                 num: '1,200+',
@@ -180,11 +180,6 @@ export default function AboutPage() {
         <h2 className="font-cormorant text-4xl font-light text-cream mb-4">
           Come and see for yourself.
         </h2>
-        <p className="font-jost text-sm text-muted mb-10 max-w-sm mx-auto leading-relaxed">
-          36, BHEL Ancillary Industrial Estate
-          <br />
-          Habibganj, Bhopal M.P. 462024
-        </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/contact"
@@ -192,14 +187,6 @@ export default function AboutPage() {
           >
             Enquire Now
           </Link>
-          <a
-            href="https://maps.google.com/?q=36+BHEL+Ancillary+Industrial+Estate+Habibganj+Bhopal"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-cinzel text-xs tracking-widest uppercase border border-gold/60 text-cream px-10 py-4 hover:bg-gold/10 transition-colors duration-300"
-          >
-            Get Directions
-          </a>
         </div>
       </section>
     </main>
