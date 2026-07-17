@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 const COLLECTIONS = [
   { label: 'Indoor', href: '/indoor' },
@@ -13,10 +14,13 @@ export default function Footer() {
     <footer className="bg-[#0A100C] border-t border-[rgba(200,169,110,0.12)] pt-16 pb-8">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-7xl mx-auto px-6">
         <div className="pb-8 md:pb-0">
-          <p className="font-cinzel text-2xl tracking-[0.55em] uppercase
-            text-[#D4C4A8] mb-4">
-            SCOTT
-          </p>
+          <Image
+            src="/logo-original-transparent.png"
+            alt="Scott"
+            width={543}
+            height={786}
+            className="h-20 w-auto mb-4"
+          />
           <p className="font-cormorant italic text-[rgba(240,234,224,0.4)] text-[14px]">
             Innovation that Inspires,
           </p>
