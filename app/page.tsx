@@ -118,28 +118,32 @@ export default function HomePage() {
                   <Image src={cat.image} alt={cat.label} fill
                     className="object-cover transition-transform duration-700
                       group-hover:scale-[1.05]"
-                    sizes="33vw" />
+                    sizes="(max-width: 767px) 34vw, 33vw" />
                   <div className="absolute inset-0 bg-gradient-to-t
                     from-black/85 via-black/30 to-transparent" />
                   {cat.isPrestige && (
-                    <div className="absolute top-5 left-5
-                      border border-[rgba(200,169,110,0.6)] px-3 py-1.5
+                    <div className="absolute top-2 left-2 md:top-5 md:left-5
+                      border border-[rgba(200,169,110,0.6)] px-1.5 py-0.5 md:px-3 md:py-1.5
                       bg-[#0A100C]/80">
-                      <span className="font-cinzel text-[#C8A96E] text-[10px]
-                        tracking-[0.3em] uppercase">★ Exclusive</span>
+                      <span className="font-cinzel text-[#C8A96E] text-[6px] md:text-[10px]
+                        tracking-[0.15em] md:tracking-[0.3em] uppercase whitespace-nowrap">
+                        <span className="md:hidden">★</span>
+                        <span className="hidden md:inline">★ Exclusive</span>
+                      </span>
                     </div>
                   )}
-                  <div className="absolute bottom-0 left-0 right-0 p-7">
-                    <p className="font-cormorant text-[28px] md:text-[34px]
-                      font-light text-[#F0EAE0] mb-2 leading-none
+                  <div className="absolute bottom-0 left-0 right-0
+                    p-2.5 sm:p-4 md:p-7">
+                    <p className="font-cormorant text-[13px] xs:text-[15px] sm:text-[20px] md:text-[34px]
+                      font-light text-[#F0EAE0] mb-0.5 md:mb-2 leading-tight md:leading-none
                       group-hover:text-[#C8A96E] transition-colors duration-400">
                       {cat.label}
                     </p>
-                    <p className="font-jost text-[11px] tracking-[0.06em]
+                    <p className="hidden md:block font-jost text-[11px] tracking-[0.06em]
                       text-[rgba(240,234,224,0.6)] mb-3">
                       {cat.sub}
                     </p>
-                    <div className="flex items-center gap-2">
+                    <div className="hidden md:flex items-center gap-2">
                       <div className="h-px bg-[#C8A96E] w-5
                         group-hover:w-10 transition-all duration-500" />
                       <span className="font-cinzel text-[9px] tracking-[0.25em]
